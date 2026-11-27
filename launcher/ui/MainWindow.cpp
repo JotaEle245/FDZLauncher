@@ -123,7 +123,6 @@
 #include "modplatform/flame/FlameAPI.h"
 #include "modplatform/flame/FlameModIndex.h"
 
-#include "KonamiCode.h"
 
 #include "InstanceCopyTask.h"
 #include "InstanceDirUpdate.h"
@@ -262,12 +261,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         // FIXME: This is kinda weird. and bad. We need some kind of managed shutdown.
         auto q = new QShortcut(QKeySequence::Quit, this);
         connect(q, &QShortcut::activated, APPLICATION, &Application::quit);
-    }
-
-    // Konami Code
-    {
-        secretEventFilter = new KonamiCode(this);
-        connect(secretEventFilter, &KonamiCode::triggered, this, &MainWindow::konamiTriggered);
     }
 
     // Create the instance list widget
@@ -474,27 +467,6 @@ void MainWindow::lockToolbars(bool state)
     ui->mainToolBar->setMovable(!state);
     ui->instanceToolBar->setMovable(!state);
     APPLICATION->settings()->set("ToolbarsLocked", state);
-}
-
-void MainWindow::konamiTriggered()
-{
-    QString gradient =
-        " stop:0 rgba(125, 0, 0, 255), stop:0.166 rgba(125, 125, 0, 255), stop:0.333 rgba(0, 125, 0, 255), stop:0.5 rgba(0, 125, 125, "
-        "255), stop:0.666 rgba(0, 0, 125, 255), stop:0.833 rgba(125, 0, 125, 255), stop:1 rgba(125, 0, 0, 255));";
-    QString stylesheet = "background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0," + gradient;
-    if (ui->mainToolBar->styleSheet() == stylesheet) {
-        ui->mainToolBar->setStyleSheet("");
-        ui->instanceToolBar->setStyleSheet("");
-        ui->centralWidget->setStyleSheet("");
-        ui->statusBar->setStyleSheet("");
-        qDebug() << "Super Secret Mode DEACTIVATED!";
-    } else {
-        ui->mainToolBar->setStyleSheet(stylesheet);
-        ui->instanceToolBar->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1," + gradient);
-        ui->centralWidget->setStyleSheet("background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1," + gradient);
-        ui->statusBar->setStyleSheet(stylesheet);
-        qDebug() << "Super Secret Mode ACTIVATED!";
-    }
 }
 
 void MainWindow::showInstanceContextMenu(const QPoint& pos)
@@ -744,7 +716,6 @@ bool MainWindow::eventFilter(QObject* obj, QEvent* ev)
 {
     if (obj == view) {
         if (ev->type() == QEvent::KeyPress) {
-            secretEventFilter->input(ev);
             QKeyEvent* keyEvent = static_cast<QKeyEvent*>(ev);
             switch (keyEvent->key()) {
                     /*

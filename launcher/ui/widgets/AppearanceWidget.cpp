@@ -53,6 +53,16 @@ AppearanceWidget::AppearanceWidget(bool themesOnly, QWidget* parent)
 
     m_ui->catPreview->setGraphicsEffect(new QGraphicsOpacityEffect(this));
 
+    // FDZ Launcher: sin fondos de gatos
+    m_ui->catPackLabel->hide();
+    m_ui->catPackComboBox->hide();
+    m_ui->catPackFolder->hide();
+    m_ui->catOpacityLabel->hide();
+    m_ui->widget->hide();
+    m_ui->catFitLabel->hide();
+    m_ui->catFitComboBox->hide();
+    m_ui->catPreview->hide();
+
     m_defaultFormat = QTextCharFormat(m_ui->consolePreview->currentCharFormat());
 
     if (themesOnly) {
