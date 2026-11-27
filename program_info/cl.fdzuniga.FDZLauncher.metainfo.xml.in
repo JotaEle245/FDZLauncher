@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop">
   <id>@Launcher_AppID@</id>
-  <name>Fjord Launcher</name>
+  <name>FDZ Launcher</name>
   <summary>Prism Launcher fork with support for alternative auth servers</summary>
-  <developer id="org.unmojang">
-    <name>Fjord Launcher Contributors</name>
+  <developer id="cl.fdzuniga">
+    <name>FDZ Launcher Contributors</name>
   </developer>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>GPL-3.0-only</project_license>
@@ -14,9 +14,9 @@
   <releases>
     <release version="@Launcher_VERSION_NAME@" date="@Launcher_BUILD_TIMESTAMP@"></release>
   </releases>
-  <url type="homepage">https://github.com/unmojang/FjordLauncher</url>
-  <url type="bugtracker">https://github.com/unmojang/FjordLauncher/issues</url>
-  <url type="contact">https://matrix.to/#/#unmojang:matrix.org</url>
+  <url type="homepage">https://github.com/JotaEle245/FDZLauncher</url>
+  <url type="bugtracker">https://github.com/JotaEle245/FDZLauncher/issues</url>
+  <url type="contact">https://github.com/JotaEle245/FDZLauncher/issues</url>
   <content_rating type="oars-1.1">
     <content_attribute id="violence-fantasy">moderate</content_attribute>
     <content_attribute id="social-chat">intense</content_attribute>
