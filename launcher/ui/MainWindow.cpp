@@ -216,6 +216,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent), ui(new Ui::MainWi
         ui->actionDISCORD->setVisible(!BuildConfig.DISCORD_URL.isEmpty());
         ui->actionREDDIT->setVisible(!BuildConfig.SUBREDDIT_URL.isEmpty());
 
+        // FDZ Launcher: sin botón ni menú de carpetas (la carpeta de logs está en Ayuda)
+        ui->actionFoldersButton->setVisible(false);
+        ui->foldersMenu->menuAction()->setVisible(false);
+
         ui->actionCheckUpdate->setVisible(APPLICATION->updaterEnabled());
 
 #ifndef Q_OS_MAC

@@ -186,6 +186,7 @@
     <addaction name="actionClearMetadata"/>
     <addaction name="actionReportBug"/>
     <addaction name="actionViewLog"/>
+    <addaction name="actionViewLogsFolder"/>
     <addaction name="actionAddToPATH"/>
     <addaction name="separator"/>
     <addaction name="actionMATRIX"/>
@@ -193,7 +194,6 @@
     <addaction name="actionREDDIT"/>
     <addaction name="separator"/>
     <addaction name="actionCheckUpdate"/>
-    <addaction name="actionOpenWiki"/>
     <addaction name="actionAbout"/>
    </widget>
    <addaction name="fileMenu"/>
