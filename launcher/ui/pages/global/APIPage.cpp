@@ -66,6 +66,12 @@ APIPage::APIPage(QWidget* parent) : QWidget(parent), ui(new Ui::APIPage)
 
     ui->setupUi(this);
 
+    // FDZ Launcher: sin obtener la clave de la app de CurseForge ni páginas de Technic
+    ui->fetchKeyButton->hide();
+    ui->label_10->hide();
+    ui->label_12->hide();
+    ui->technicClientID->hide();
+
     for (auto pasteType : comboBoxEntries) {
         ui->pasteTypeComboBox->addItem(PasteUpload::PasteTypes.at(pasteType).name, pasteType);
     }

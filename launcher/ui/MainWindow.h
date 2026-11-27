@@ -57,7 +57,6 @@ class QLabel;
 class MinecraftLauncher;
 class BaseProfilerFactory;
 class InstanceView;
-class KonamiCode;
 class InstanceTask;
 class LabeledToolButton;
 
@@ -195,7 +194,6 @@ class MainWindow : public QMainWindow {
 
     void repopulateAccountsMenu();
 
-    void konamiTriggered();
 
     void globalSettingsClosed();
 
@@ -233,7 +231,6 @@ class MainWindow : public QMainWindow {
     LabeledToolButton* changeIconButton = nullptr;
     LabeledToolButton* renameButton = nullptr;
     QToolButton* helpMenuButton = nullptr;
-    KonamiCode* secretEventFilter = nullptr;
 
     std::shared_ptr<Setting> instanceToolbarSetting = nullptr;
 
