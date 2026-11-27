@@ -44,14 +44,6 @@ jobs:
       - name: Package artifacts properly
         run: |
           mv ${{ github.workspace }}/FDZLauncher-source FDZLauncher-${{ env.VERSION }}
-          mv FDZLauncher-Linux-Qt6-Portable*/FDZLauncher-portable.tar.gz FDZLauncher-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
-          mv FDZLauncher-Linux-aarch64-Qt6-Portable*/FDZLauncher-portable.tar.gz FDZLauncher-Linux-aarch64-Qt6-Portable-${{ env.VERSION }}.tar.gz
-          mv FDZLauncher-*.AppImage/FDZLauncher-*-x86_64.AppImage FDZLauncher-Linux-x86_64.AppImage
-          mv FDZLauncher-*.AppImage.zsync/FDZLauncher-*-x86_64.AppImage.zsync FDZLauncher-Linux-x86_64.AppImage.zsync
-          mv FDZLauncher-*.AppImage/FDZLauncher-*-aarch64.AppImage FDZLauncher-Linux-aarch64.AppImage
-          mv FDZLauncher-*.AppImage.zsync/FDZLauncher-*-aarch64.AppImage.zsync FDZLauncher-Linux-aarch64.AppImage.zsync
-          mv FDZLauncher-macOS*/FDZLauncher.zip FDZLauncher-macOS-${{ env.VERSION }}.zip
-          mv FDZLauncher-macOS*/FDZLauncher.dmg FDZLauncher-macOS-${{ env.VERSION }}.dmg
 
           tar --exclude='.git' -czf FDZLauncher-${{ env.VERSION }}.tar.gz FDZLauncher-${{ env.VERSION }}
 
@@ -70,28 +62,6 @@ jobs:
             cd ..
           done
 
-          for d in FDZLauncher-Windows-MinGW-w64*; do
-            cd "${d}" || continue
-            INST="$(echo -n ${d} | grep -o Setup || true)"
-            PORT="$(echo -n ${d} | grep -o Portable || true)"
-            NAME="FDZLauncher-Windows-MinGW-w64"
-            test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv FDZLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
-            test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
-            cd ..
-          done
-
-          for d in FDZLauncher-Windows-MinGW-arm64*; do
-            cd "${d}" || continue
-            INST="$(echo -n ${d} | grep -o Setup || true)"
-            PORT="$(echo -n ${d} | grep -o Portable || true)"
-            NAME="FDZLauncher-Windows-MinGW-arm64"
-            test -z "${PORT}" || NAME="${NAME}-Portable"
-            test -z "${INST}" || mv FDZLauncher-*.exe ../${NAME}-Setup-${{ env.VERSION }}.exe
-            test -n "${INST}" || zip -r -9 "../${NAME}-${{ env.VERSION }}.zip" *
-            cd ..
-          done
-
       - name: Create release
         id: create_release
         uses: softprops/action-gh-release@v2
@@ -103,24 +73,10 @@ jobs:
           prerelease: false
           fail_on_unmatched_files: true
           files: |
-            FDZLauncher-Linux-x86_64.AppImage
-            FDZLauncher-Linux-x86_64.AppImage.zsync
-            FDZLauncher-Linux-aarch64.AppImage
-            FDZLauncher-Linux-aarch64.AppImage.zsync
-            FDZLauncher-Linux-Qt6-Portable-${{ env.VERSION }}.tar.gz
-            FDZLauncher-Linux-aarch64-Qt6-Portable-${{ env.VERSION }}.tar.gz
-            FDZLauncher-Windows-MinGW-w64-${{ env.VERSION }}.zip
-            FDZLauncher-Windows-MinGW-w64-Portable-${{ env.VERSION }}.zip
-            FDZLauncher-Windows-MinGW-w64-Setup-${{ env.VERSION }}.exe
-            FDZLauncher-Windows-MinGW-arm64-${{ env.VERSION }}.zip
-            FDZLauncher-Windows-MinGW-arm64-Portable-${{ env.VERSION }}.zip
-            FDZLauncher-Windows-MinGW-arm64-Setup-${{ env.VERSION }}.exe
             FDZLauncher-Windows-MSVC-arm64-${{ env.VERSION }}.zip
             FDZLauncher-Windows-MSVC-arm64-Portable-${{ env.VERSION }}.zip
             FDZLauncher-Windows-MSVC-arm64-Setup-${{ env.VERSION }}.exe
             FDZLauncher-Windows-MSVC-${{ env.VERSION }}.zip
             FDZLauncher-Windows-MSVC-Portable-${{ env.VERSION }}.zip
             FDZLauncher-Windows-MSVC-Setup-${{ env.VERSION }}.exe
-            FDZLauncher-macOS-${{ env.VERSION }}.zip
-            FDZLauncher-macOS-${{ env.VERSION }}.dmg
             FDZLauncher-${{ env.VERSION }}.tar.gz
